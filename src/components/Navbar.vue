@@ -12,7 +12,6 @@ const menuItems:menuItem[] = [
 <template lang="pug">
 div.navbar
   router-link(
-    :key="item.routeName"
     v-for="item in menuItems"
     :to="{ name: item.routeName }").navbar-item {{ item.name }}
 </template>

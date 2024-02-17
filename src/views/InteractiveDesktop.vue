@@ -8,7 +8,10 @@ type Block = {
   id: string
   width: number
   height: number
-  coords: { x: number; y: number }
+  coords: {
+    x: number
+    y: number
+  }
   zIndex: number
 }
 
@@ -78,18 +81,20 @@ function onDrag(coords:{ x:number, y:number }, index:number):void {
 
 const containerWrapper = ref()
 function revertLastDeletedBlock():void {
-  if (!deletedBlocks.length) return
+  if (!deletedBlocks.length || !containerWrapper.value) return
   // Get the desktop size
-  const contentRefRect = containerWrapper.value.contentRef.getBoundingClientRect()
+  const contentRefRect = containerWrapper.value.$contentRef.getBoundingClientRect()
   const { width:containerRectWidth, height:containerRectHeight } = contentRefRect
   // Set the block to default dimensions and centered positioning
+  const centerX = (containerRectWidth / 2) - (defaultWidth / 2)
+  const centerY = (containerRectHeight / 2) - (defaultHeight / 2)
   const block: Block = {
     ...deletedBlocks[0],
     width: defaultWidth,
     height: defaultHeight,
     coords: {
-      x: (containerRectWidth / 2) - (defaultWidth / 2),
-      y: (containerRectHeight / 2) - (defaultHeight / 2)
+      x: Math.max(0, centerX),
+      y: Math.max(0, centerY)
     }
   }
   // Retrieve a deleted unit

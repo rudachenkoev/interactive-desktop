@@ -8,7 +8,7 @@ import { storeToRefs } from 'pinia'
 //
 const ContainerWrapper = defineAsyncComponent(() => import('@components/wrappers/Container.vue'))
 
-const headers: Header[] = [
+const headers:Header[] = [
   { text: 'From', value: 'from' },
   { text: 'To', value: 'to' },
   { text: 'Sum', value: 'amount' }
@@ -18,12 +18,23 @@ const { ws, transactions, totalAmount, isSubscribed } = storeToRefs(socketStore)
 const { connect } = socketStore
 
 function startUnconfirmedSubscription():void {
-  connect('wss://ws.blockchain.info/inv')
-    .then(() => ws.value.send(JSON.stringify({ op: 'unconfirmed_sub' })))
+  try {
+    connect('wss://ws.blockchain.info/inv').then(() => {
+      if (ws.value?.readyState !== 1) return
+      ws.value.send(JSON.stringify({ op: 'unconfirmed_sub' }))
+    })
+  } catch (error) {
+    console.error(error)
+  }
 }
 function stopUnconfirmedSubscription():void {
-  ws.value.send(JSON.stringify({ op: 'unconfirmed_unsub' }))
-  ws.value.close()
+ try {
+   if (ws.value?.readyState !== 1) return
+   ws.value.send(JSON.stringify({ op: 'unconfirmed_unsub' }))
+   ws.value.close()
+ } catch (error) {
+   console.error(error)
+ }
 }
 function resetSubscription():void {
   totalAmount.value = 0
@@ -43,7 +54,7 @@ ContainerWrapper
       border-cell
       buttons-pagination)
   template(#actions)
-    button(:disabled="isSubscribed" @click="startUnconfirmedSubscription") Start subscription
-    button(:disabled="!isSubscribed" @click="stopUnconfirmedSubscription") Stop subscription
+    button(v-if="isSubscribed" :disabled="!isSubscribed" @click="stopUnconfirmedSubscription") Stop subscription
+    button(v-else @click="startUnconfirmedSubscription") Start subscription
     button(@click="resetSubscription") Reset
 </template>

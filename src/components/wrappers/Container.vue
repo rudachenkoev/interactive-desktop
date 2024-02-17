@@ -4,15 +4,15 @@ import { ref } from 'vue'
 defineProps({
   gridContent: { type: Boolean, default: false }
 })
-const contentRef = ref()
-defineExpose({ contentRef })
+const $contentRef = ref()
+defineExpose({ $contentRef })
 </script>
 
 <template lang="pug">
 div.wrapper-container
   div.wrapper-container__actions
     slot(name="actions")
-  div(ref="contentRef" :class="{ 'grid-layout': gridContent }").wrapper-container__content
+  div(ref="$contentRef" :class="{ 'grid-layout': gridContent }").wrapper-container__content
     slot(name="content")
 </template>
 
