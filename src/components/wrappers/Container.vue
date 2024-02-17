@@ -31,7 +31,7 @@ div.wrapper-container
       background: linear-gradient(-90deg, rgba(0, 0, 0, .1) 1px, transparent 1px), linear-gradient(rgba(0, 0, 0, .1) 1px, transparent 1px)
       background-size: 10px 10px, 10px 10px
   &__actions
-    border-top: 1px solid #1a1a1a
+    border-bottom: 1px solid #1a1a1a
     padding: 16px 24px
     :deep(button) + button
       margin-left: 24px
