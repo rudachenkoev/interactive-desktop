@@ -12,10 +12,10 @@ defineExpose({ contentRef })
 
 <template lang="pug">
 div.wrapper-container
-  div(ref="contentRef" :class="{ 'grid-layout': gridContent }").wrapper-container__content
-    slot(name="content")
   div.wrapper-container__actions
     slot(name="actions")
+  div(ref="contentRef" :class="{ 'grid-layout': gridContent }").wrapper-container__content
+    slot(name="content")
 </template>
 
 <style scoped lang="sass">
@@ -26,7 +26,7 @@ div.wrapper-container
   display: flex
   flex-direction: column
   &__content
-    flex-grow: 1
+    flex: 1
     &.grid-layout
       background: linear-gradient(-90deg, rgba(0, 0, 0, .1) 1px, transparent 1px), linear-gradient(rgba(0, 0, 0, .1) 1px, transparent 1px)
       background-size: 10px 10px, 10px 10px

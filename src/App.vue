@@ -6,9 +6,6 @@ const NavbarMenu = defineAsyncComponent(() => import('./components/Navbar.vue'))
 
 <template lang="pug">
 NavbarMenu
-div(style="flex-grow: 1")
+div(style="flex: 1")
   router-view
 </template>
-
-<style lang="sass" scoped>
-</style>
