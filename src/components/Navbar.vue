@@ -21,6 +21,7 @@ div.navbar
   padding: 16px 24px
   display: flex
   align-items: center
+  background-color: #242424
   &-item
     color: #FFF
     &.router-link-active
