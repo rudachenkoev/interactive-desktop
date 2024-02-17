@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import VueDraggableResizable from 'vue-draggable-resizable'
-// Use methods and configurations
+
 defineProps({
   block: { type: Object, default: null, required: true }
 })
@@ -29,4 +29,20 @@ VueDraggableResizable(
 </template>
 
 <style scoped lang="sass">
+.content-block
+  display: flex
+  place-items: center
+  flex-direction: column
+  background: #FFF
+  border: 1px solid #000
+  color: #1a1a1a
+  .close
+    position: absolute
+    top: 8px
+    right: 12px
+    cursor: pointer
+    transition: all ease-in-out 0.4s
+    &:hover
+      opacity: 0.8
+      transition: all ease-in-out 0.4s
 </style>

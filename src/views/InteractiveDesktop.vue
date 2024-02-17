@@ -1,13 +1,15 @@
 <script setup lang="ts">
 import { defineAsyncComponent, reactive, ref } from 'vue'
+
+const ContainerWrapper = defineAsyncComponent(() => import('../components/wrappers/Container.vue'))
 const InteractiveDesktopBlock = defineAsyncComponent(() => import('../components/InteractiveDesktop/Block.vue'))
 
 type Block = {
-  id: string;
-  width: number;
-  height: number;
-  coords: { x: number; y: number };
-  zIndex: number;
+  id: string
+  width: number
+  height: number
+  coords: { x: number; y: number }
+  zIndex: number
 }
 
 const defaultWidth = 300
@@ -104,8 +106,8 @@ function addBlock():void {
 </script>
 
 <template lang="pug">
-div.id-container
-  div(ref="contentRef").id-container__content
+ContainerWrapper(grid-content)
+  template(#content)
     InteractiveDesktopBlock(
       :key="`interactive-desktop-block-${block.id}`"
       v-for="(block, index) in blocks"
@@ -114,41 +116,7 @@ div.id-container
       @onDelete="onDelete(block, index)"
       @onResize="dimensions => onResize(dimensions, index)"
       @onDrag="coords => onDrag(coords, index)")
-  div.id-container__actions
+  template(#actions)
     button(:disabled="!deletedBlocks.length" @click="revertLastDeletedBlock") Revert deleted block
     button(:disabled="blocks.length >= 10" @click="addBlock") Add new block
 </template>
-
-<style lang="sass" scoped>
-.id-container // id = Interactive desktop
-  width: 100%
-  height: 100%
-  background: #FAFAFA
-  display: flex
-  flex-direction: column
-  &__content
-    flex-grow: 1
-    background: linear-gradient(-90deg, rgba(0, 0, 0, .1) 1px, transparent 1px), linear-gradient(rgba(0, 0, 0, .1) 1px, transparent 1px),
-    background-size: 10px 10px, 10px 10px,
-    .content-block
-      display: flex
-      place-items: center
-      flex-direction: column
-      background: #FFF
-      border: 1px solid #000
-      color: #1a1a1a
-      :deep(.close)
-        position: absolute
-        top: 8px
-        right: 12px
-        cursor: pointer
-        transition: all ease-in-out 0.4s
-        &:hover
-          opacity: 0.8
-          transition: all ease-in-out 0.4s
-  &__actions
-    border-top: 1px solid #1a1a1a
-    padding: 16px 24px
-    button + button
-      margin-left: 24px
-</style>

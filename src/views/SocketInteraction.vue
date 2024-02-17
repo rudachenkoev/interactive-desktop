@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { defineAsyncComponent, ref } from 'vue'
 import Vue3EasyDataTable from 'vue3-easy-data-table'
 import 'vue3-easy-data-table/dist/style.css'
 import type { Header, Item } from 'vue3-easy-data-table'
+
+const ContainerWrapper = defineAsyncComponent(() => import('../components/wrappers/Container.vue'))
 
 const headers: Header[] = [
   { text: 'From', value: 'from' },
@@ -64,8 +66,8 @@ function resetSubscription() {
 </script>
 
 <template lang="pug">
-div.si-container
-  div.si-container__content
+ContainerWrapper
+  template(#content)
     Vue3EasyDataTable(
       :headers="headers"
       :items="transactions"
@@ -73,24 +75,8 @@ div.si-container
       body-text-direction="center"
       border-cell
       buttons-pagination)
-  div.si-container__actions
+  template(#actions)
     button(:disabled="isSubscribed" @click="startUnconfirmedSubscription") Start subscription
     button(:disabled="!isSubscribed" @click="stopUnconfirmedSubscription") Stop subscription
     button(@click="resetSubscription") Reset
 </template>
-
-<style lang="sass">
-.si-container // Socket interaction
-  width: 100%
-  height: 100%
-  background: #FAFAFA
-  display: flex
-  flex-direction: column
-  &__content
-    flex-grow: 1
-  &__actions
-    border-top: 1px solid #1a1a1a
-    padding: 16px 24px
-    button + button
-      margin-left: 24px
-</style>
