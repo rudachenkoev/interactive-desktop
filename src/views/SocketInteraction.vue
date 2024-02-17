@@ -1,4 +1,9 @@
 <script setup lang="ts">
+/*
+  I chose the vue3-easy-data-table library (link: https://www.npmjs.com/package/vue3-easy-data-table) to display the transaction data.
+  It closes the needs with pagination and displaying the necessary number of records.
+  And state management library Pinia to save transaction history when switching between pages (url: https://www.npmjs.com/package/pinia).
+*/
 import { defineAsyncComponent } from 'vue'
 import Vue3EasyDataTable from 'vue3-easy-data-table'
 import 'vue3-easy-data-table/dist/style.css'
@@ -6,7 +11,7 @@ import type { Header } from 'vue3-easy-data-table'
 import { useSocketStore } from '@/stores/socket'
 import { storeToRefs } from 'pinia'
 //
-const ContainerWrapper = defineAsyncComponent(() => import('@components/wrappers/Container.vue'))
+const ContainerWrapper = defineAsyncComponent(() => import('@components/Wrappers/Container.vue'))
 
 const headers:Header[] = [
   { text: 'From', value: 'from' },

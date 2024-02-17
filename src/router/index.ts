@@ -4,6 +4,10 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
+      path: '/',
+      redirect: '/interactive-desktop'
+    },
+    {
       path: '/interactive-desktop',
       name: 'interactive-desktop',
       component: () => import('@/views/InteractiveDesktop.vue')

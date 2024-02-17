@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { defineAsyncComponent, reactive, ref } from 'vue'
 //
-const ContainerWrapper = defineAsyncComponent(() => import('@components/wrappers/Container.vue'))
+const ContainerWrapper = defineAsyncComponent(() => import('@components/Wrappers/Container.vue'))
 const InteractiveDesktopBlock = defineAsyncComponent(() => import('@components/InteractiveDesktop/Block.vue'))
 
 type Block = {
@@ -20,8 +20,10 @@ const defaultHeight = 100
 
 const blocks = ref<Block[]>([])
 function saveBlocks():void {
-  /* I'm using localStorage to store changes on a block.
-   But in the working version it would be nice to store these values by API with interval at some time interval. */
+  /*
+    I'm using localStorage to store changes in a block.
+    But in the working version it would be nice to store these values by API with interval in some time interval or to update blocks element by element.
+  */
   localStorage.setItem('blocks', JSON.stringify(blocks.value))
 }
 
@@ -82,7 +84,7 @@ function onDrag(coords:{ x:number, y:number }, index:number):void {
 const containerWrapper = ref()
 function revertLastDeletedBlock():void {
   if (!deletedBlocks.length || !containerWrapper.value) return
-  // Get the desktop size
+  // Get the container size
   const contentRefRect = containerWrapper.value.$contentRef.getBoundingClientRect()
   const { width:containerRectWidth, height:containerRectHeight } = contentRefRect
   // Set the block to default dimensions and centered positioning

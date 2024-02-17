@@ -1,5 +1,10 @@
 <script setup lang="ts">
+/*
+  For the drag and drop and resize functionality, I decided to use the pre-built vue-draggable-resizable (url: https://www.npmjs.com/package/vue-draggable-resizable) library.
+  It has a large community, provides all the needs of the specification and has a small size.
+*/
 import VueDraggableResizable from 'vue-draggable-resizable'
+import 'vue-draggable-resizable/style.css'
 //
 defineProps({
   block: { type: Object, default: null, required: true }
