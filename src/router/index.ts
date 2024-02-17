@@ -6,12 +6,12 @@ const router = createRouter({
     {
       path: '/interactive-desktop',
       name: 'interactive-desktop',
-      component: () => import('../views/InteractiveDesktop.vue')
+      component: () => import('@/views/InteractiveDesktop.vue')
     },
     {
       path: '/socket-interaction',
       name: 'socket-interaction',
-      component: () => import('../views/SocketInteraction.vue')
+      component: () => import('@/views/SocketInteraction.vue')
     }
   ]
 })

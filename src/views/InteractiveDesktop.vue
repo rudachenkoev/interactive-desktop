@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { defineAsyncComponent, reactive, ref } from 'vue'
 
-const ContainerWrapper = defineAsyncComponent(() => import('../components/wrappers/Container.vue'))
-const InteractiveDesktopBlock = defineAsyncComponent(() => import('../components/InteractiveDesktop/Block.vue'))
+const ContainerWrapper = defineAsyncComponent(() => import('@components/wrappers/Container.vue'))
+const InteractiveDesktopBlock = defineAsyncComponent(() => import('@components/InteractiveDesktop/Block.vue'))
 
 type Block = {
   id: string

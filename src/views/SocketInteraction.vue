@@ -4,7 +4,7 @@ import Vue3EasyDataTable from 'vue3-easy-data-table'
 import 'vue3-easy-data-table/dist/style.css'
 import type { Header, Item } from 'vue3-easy-data-table'
 
-const ContainerWrapper = defineAsyncComponent(() => import('../components/wrappers/Container.vue'))
+const ContainerWrapper = defineAsyncComponent(() => import('@components/wrappers/Container.vue'))
 
 const headers: Header[] = [
   { text: 'From', value: 'from' },
