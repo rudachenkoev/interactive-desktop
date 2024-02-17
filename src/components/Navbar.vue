@@ -1,9 +1,8 @@
 <script setup lang="ts">
 type menuItem = {
-  routeName: string;
-  name: string;
+  routeName: string
+  name: string
 }
-
 const menuItems:menuItem[] = [
   { routeName: 'interactive-desktop', name: 'Interactive desktop' },
   { routeName: 'socket-interaction', name: 'Socket interaction' }

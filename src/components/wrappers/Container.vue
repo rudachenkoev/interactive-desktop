@@ -1,12 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-
+//
 defineProps({
   gridContent: { type: Boolean, default: false }
 })
-
 const contentRef = ref()
-
 defineExpose({ contentRef })
 </script>
 

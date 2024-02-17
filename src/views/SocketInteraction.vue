@@ -34,6 +34,7 @@ function resetSubscription():void {
 <template lang="pug">
 ContainerWrapper
   template(#content)
+    h3 Total amount: {{ totalAmount }}
     Vue3EasyDataTable(
       :headers="headers"
       :items="transactions"

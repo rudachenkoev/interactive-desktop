@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import VueDraggableResizable from 'vue-draggable-resizable'
-
+//
 defineProps({
   block: { type: Object, default: null, required: true }
 })

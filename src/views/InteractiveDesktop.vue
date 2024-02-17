@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { defineAsyncComponent, reactive, ref } from 'vue'
-
+//
 const ContainerWrapper = defineAsyncComponent(() => import('@components/wrappers/Container.vue'))
 const InteractiveDesktopBlock = defineAsyncComponent(() => import('@components/InteractiveDesktop/Block.vue'))
 
@@ -51,7 +51,7 @@ function generateRandomKey():string {
   return Math.random().toString(36).substring(2, 15)
 }
 
-function onActivated(index:number) {
+function onActivated(index:number):void {
   // Move the selected item to the top layer
   blocks.value[index].zIndex = blocks.value.reduce((max, item) => Math.max(max, item.zIndex), 0) + 1
 }
@@ -67,11 +67,11 @@ function onDelete(block:Block, index:number):void {
     saveBlocks()
   }
 }
-function onResize(dimensions:{ width:number, height:number}, index:number) {
+function onResize(dimensions:{ width:number, height:number}, index:number):void {
   Object.assign(blocks.value[index], dimensions)
   saveBlocks()
 }
-function onDrag(coords:{ x:number, y:number }, index:number) {
+function onDrag(coords:{ x:number, y:number }, index:number):void {
   Object.assign(blocks.value[index].coords, coords)
   saveBlocks()
 }
