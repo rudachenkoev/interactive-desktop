@@ -76,11 +76,12 @@ function onDrag(coords:{ x:number, y:number }, index:number) {
   saveBlocks()
 }
 
-const contentRef = ref()
+const containerWrapper = ref()
 function revertLastDeletedBlock():void {
   if (!deletedBlocks.length) return
   // Get the desktop size
-  const { width:containerRectWidth, height:containerRectHeight } = contentRef.value.getBoundingClientRect()
+  const contentRefRect = containerWrapper.value.contentRef.getBoundingClientRect()
+  const { width:containerRectWidth, height:containerRectHeight } = contentRefRect
   // Set the block to default dimensions and centered positioning
   const block: Block = {
     ...deletedBlocks[0],
@@ -106,7 +107,7 @@ function addBlock():void {
 </script>
 
 <template lang="pug">
-ContainerWrapper(grid-content)
+ContainerWrapper(ref="containerWrapper" grid-content)
   template(#content)
     InteractiveDesktopBlock(
       :key="`interactive-desktop-block-${block.id}`"

@@ -1,12 +1,18 @@
 <script setup lang="ts">
+import { ref } from 'vue'
+
 defineProps({
   gridContent: { type: Boolean, default: false }
 })
+
+const contentRef = ref()
+
+defineExpose({ contentRef })
 </script>
 
 <template lang="pug">
 div.wrapper-container
-  div(:class="{ 'grid-layout': gridContent }").wrapper-container__content
+  div(ref="contentRef" :class="{ 'grid-layout': gridContent }").wrapper-container__content
     slot(name="content")
   div.wrapper-container__actions
     slot(name="actions")
