@@ -5,11 +5,26 @@
 */
 import VueDraggableResizable from 'vue-draggable-resizable'
 import 'vue-draggable-resizable/style.css'
+type Block = {
+  id: string
+  width: number
+  height: number
+  coords: {
+    x: number
+    y: number
+  }
+  zIndex: number
+}
 //
-defineProps({
-  block: { type: Object, default: null, required: true }
-})
-defineEmits(['onActivated', 'onDelete', 'onResize', 'onDrag'])
+defineProps<{
+  block: Block
+}>()
+defineEmits<{
+  onActivated: (index: number) => void
+  onDelete: (block: Block, index: number) => void
+  onResize: (dimensions: { width: number, height: number }, index: number) => void
+  onDrag: (coords: { x: number, y: number }, index: number) => void
+}>()
 </script>
 
 <template lang="pug">
@@ -46,8 +61,7 @@ VueDraggableResizable(
     top: 8px
     right: 12px
     cursor: pointer
-    transition: all ease-in-out 0.4s
+    transition: opacity ease-in-out 0.4s
     &:hover
       opacity: 0.8
-      transition: all ease-in-out 0.4s
 </style>

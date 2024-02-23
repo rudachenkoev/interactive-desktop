@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { defineAsyncComponent } from 'vue'
-//
-const NavbarMenu = defineAsyncComponent(() => import('@/components/Navbar.vue'))
+import NavbarMenu from '@/components/Navbar.vue'
 </script>
 
 <template lang="pug">

@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { defineAsyncComponent, reactive, ref } from 'vue'
+import ContainerWrapper from '@components/Wrappers/Container.vue'
+import InteractiveDesktopBlock from '@components/InteractiveDesktop/Block.vue'
+import { reactive, ref } from 'vue'
 //
-const ContainerWrapper = defineAsyncComponent(() => import('@components/Wrappers/Container.vue'))
-const InteractiveDesktopBlock = defineAsyncComponent(() => import('@components/InteractiveDesktop/Block.vue'))
+const defaultWidth = 300
+const defaultHeight = 100
 
 type Block = {
   id: string
@@ -14,10 +16,6 @@ type Block = {
   }
   zIndex: number
 }
-
-const defaultWidth = 300
-const defaultHeight = 100
-
 const blocks = ref<Block[]>([])
 function saveBlocks():void {
   /*
