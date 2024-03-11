@@ -1,6 +1,6 @@
 # Interactive desktop
 
-**Stack:** Vue.js (Composition API), Typescript.
+**Stack:** Vue.js (Composition API), Typescript, Vite, Pinia, Vue Router.
 
 An example of implementing a single-page application with two sections:
 
